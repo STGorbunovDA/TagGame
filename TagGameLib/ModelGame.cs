@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace TagGame
+namespace TagGameLib
 {
-    class ModelGame
+    public class ModelGame
     {
         Random rnd = new Random();
         int[,] map = new int[4, 4]; //Создаём игровое поле
         int step; //счётчик ходов
 
-        public Action<int[,]> RePaint { get; internal set; }
+        public Action<int[,]> RePaint { get; set; }
 
         public int Step
         {
@@ -163,7 +157,6 @@ namespace TagGame
             if (RePaint != null)
                 RePaint(map);
         }
-
         #endregion
     }
 }
