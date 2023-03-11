@@ -1,34 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace TagGame
+namespace TagGameLib
 {
-    class ModelGame
+    public enum MoveDirection { UP, Down, Left, Right,
+        None
+    }
+    public class ModelGame
     {
         Random rnd = new Random();
         int[,] map = new int[4, 4]; //Создаём игровое поле
         int step; //счётчик ходов
 
-        public Action<int[,]> RePaint { get; internal set; }
+        public Action<int[,]> RePaint { get; set; }
 
         public int Step
         {
             get => step;
             protected set => step = value;
         }
+        public int this[int row, int col] => map[row, col];
 
         public ModelGame()
         {
             Init();
             Mix();
             Step = 0;
-            if (RePaint != null)
-                RePaint(map);
+            RePaint?.Invoke(map);
         }
 
         /// <summary>
@@ -40,8 +37,7 @@ namespace TagGame
             for (int i = 0; i < map.GetLength(0); i++)
                 for (int j = 0; j < map.GetLength(1); j++)
                     map[i, j] = (i * 4 + j + 1) % 16;
-            if (RePaint != null)
-                RePaint(map);
+            RePaint?.Invoke(map);
         }
 
         /// <summary>
@@ -59,8 +55,7 @@ namespace TagGame
                     case 3: ToDown(); break;
                 }
             }
-            if (RePaint != null)
-                RePaint(map);
+            RePaint?.Invoke(map);
         }
         /// <summary>
         /// Выйгрыш
@@ -151,19 +146,17 @@ namespace TagGame
             }
         }
 
-        public void KeyDown(ConsoleKey key)
+        public void KeyDown(MoveDirection key)
         {
             switch (key)
             {
-                case ConsoleKey.LeftArrow: ToLeft(); break;
-                case ConsoleKey.RightArrow: ToRight(); break;
-                case ConsoleKey.UpArrow: ToUp(); break;
-                case ConsoleKey.DownArrow: ToDown(); break;
+                case MoveDirection.Left: ToLeft(); break;
+                case MoveDirection.Right: ToRight(); break;
+                case MoveDirection.UP: ToUp(); break;
+                case MoveDirection.Down: ToDown(); break;
             }
-            if (RePaint != null)
-                RePaint(map);
+            RePaint?.Invoke(map);
         }
-
         #endregion
     }
 }

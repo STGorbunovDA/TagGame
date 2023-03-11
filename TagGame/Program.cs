@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Timers;
+using TagGameLib;
 
 namespace TagGame
 {
@@ -9,6 +11,13 @@ namespace TagGame
         static Timer timer;
         static bool flag;
         static DateTime start = DateTime.Now;
+        static Dictionary<ConsoleKey, MoveDirection> keys = new Dictionary<ConsoleKey, MoveDirection>()
+        {
+            [ConsoleKey.LeftArrow] = MoveDirection.Left,
+            [ConsoleKey.RightArrow] = MoveDirection.Right,
+            [ConsoleKey.UpArrow] = MoveDirection.UP,
+            [ConsoleKey.DownArrow] = MoveDirection.Down,
+        };
         private static void TimerElapsed(object sender, ElapsedEventArgs e)
         {
             if (flag)
@@ -26,10 +35,13 @@ namespace TagGame
             timer.Elapsed += TimerElapsed;
             timer.Start();
             model = new ModelGame();
-            model.RePaint += Print;
-            model.KeyDown(ConsoleKey.LeftArrow);
-
-            do model.KeyDown(Console.ReadKey(true).Key);
+            model.RePaint += Print; 
+            model.KeyDown(MoveDirection.Left);
+            do
+            {
+                var key = Console.ReadKey(true).Key;
+                model.KeyDown(keys[key]);
+            }
             while (!model.Win());
 
             timer.Stop();
