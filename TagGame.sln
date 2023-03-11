@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagGame", "TagGame\TagGame.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagGameLib", "TagGameLib\TagGameLib.csproj", "{2DC32785-0FCE-4497-A663-8C0763C7A051}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagGameWinForms", "TagGameWinForms\TagGameWinForms.csproj", "{AE34428F-6248-489C-B454-7E1B7A11418E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2DC32785-0FCE-4497-A663-8C0763C7A051}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DC32785-0FCE-4497-A663-8C0763C7A051}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DC32785-0FCE-4497-A663-8C0763C7A051}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE34428F-6248-489C-B454-7E1B7A11418E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE34428F-6248-489C-B454-7E1B7A11418E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE34428F-6248-489C-B454-7E1B7A11418E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE34428F-6248-489C-B454-7E1B7A11418E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,6 +2,9 @@
 
 namespace TagGameLib
 {
+    public enum MoveDirection { UP, Down, Left, Right,
+        None
+    }
     public class ModelGame
     {
         Random rnd = new Random();
@@ -15,14 +18,14 @@ namespace TagGameLib
             get => step;
             protected set => step = value;
         }
+        public int this[int row, int col] => map[row, col];
 
         public ModelGame()
         {
             Init();
             Mix();
             Step = 0;
-            if (RePaint != null)
-                RePaint(map);
+            RePaint?.Invoke(map);
         }
 
         /// <summary>
@@ -34,8 +37,7 @@ namespace TagGameLib
             for (int i = 0; i < map.GetLength(0); i++)
                 for (int j = 0; j < map.GetLength(1); j++)
                     map[i, j] = (i * 4 + j + 1) % 16;
-            if (RePaint != null)
-                RePaint(map);
+            RePaint?.Invoke(map);
         }
 
         /// <summary>
@@ -53,8 +55,7 @@ namespace TagGameLib
                     case 3: ToDown(); break;
                 }
             }
-            if (RePaint != null)
-                RePaint(map);
+            RePaint?.Invoke(map);
         }
         /// <summary>
         /// Выйгрыш
@@ -145,17 +146,16 @@ namespace TagGameLib
             }
         }
 
-        public void KeyDown(ConsoleKey key)
+        public void KeyDown(MoveDirection key)
         {
             switch (key)
             {
-                case ConsoleKey.LeftArrow: ToLeft(); break;
-                case ConsoleKey.RightArrow: ToRight(); break;
-                case ConsoleKey.UpArrow: ToUp(); break;
-                case ConsoleKey.DownArrow: ToDown(); break;
+                case MoveDirection.Left: ToLeft(); break;
+                case MoveDirection.Right: ToRight(); break;
+                case MoveDirection.UP: ToUp(); break;
+                case MoveDirection.Down: ToDown(); break;
             }
-            if (RePaint != null)
-                RePaint(map);
+            RePaint?.Invoke(map);
         }
         #endregion
     }
