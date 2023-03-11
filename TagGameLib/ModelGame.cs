@@ -2,7 +2,9 @@
 
 namespace TagGameLib
 {
-    public enum MoveDirection { UP, Down, Left, Right,
+    public enum MoveDirection
+    {
+        UP, Down, Left, Right,
         None
     }
     public class ModelGame
@@ -31,7 +33,7 @@ namespace TagGameLib
         /// <summary>
         /// Заполняем
         /// </summary>
-        void Init()
+        public void Init()
         {
 
             for (int i = 0; i < map.GetLength(0); i++)
