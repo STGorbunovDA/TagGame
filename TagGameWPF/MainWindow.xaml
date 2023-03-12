@@ -11,8 +11,23 @@
         <local:IntPositiveToDateConverter x:Key="cnv"/>
     </Window.Resources>
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property ="Foreground" Value="#444"/>
+                <Setter Property="FontSize" Value="30"/>
+            </Style>
+        </Grid.Resources>
+        <TextBlock x:Name="tblStep" 
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top"
+                   Margin="10"/>
+        <TextBlock x:Name="tblTimer" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top"
+                   Margin="10"/>
         <Viewbox>
-            <ItemsControl x:Name="ic" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50">
+            <ItemsControl x:Name="ic" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="70">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <ItemsControl ItemsSource="{Binding}">
@@ -47,5 +62,53 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Viewbox>
+        <Border x:Name="brdWin" Background="#8000" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Visibility="Collapsed">
+            <Grid>
+                <TextBlock Text="Ты выйграл!" 
+                       Foreground="Yellow"
+                       FontSize="40"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"/>
+                <Border Background="#8000"  Margin="10,100,10,10"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        CornerRadius="10">
+                    <ItemsControl x:Name="records" FontSize="20" Foreground="White">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Pos}" 
+                                           TextAlignment="Center"
+                                           Width="30"/>
+                                    <TextBlock Text=". "/>
+                                    <TextBlock Text="{Binding Date}" 
+                                           TextAlignment="Left"
+                                           Width="200"/>
+                                    <TextBlock Text="{Binding Time}" 
+                                           TextAlignment="Center"
+                                           Width="60"/>
+                                    <TextBlock Text="{Binding Steps}" 
+                                           TextAlignment="Center"
+                                           Width="50"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+                
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom">
+                    <Button Content=" Продолжить? " Click="BtnContinueGame_Click" 
+                            Margin="10"/>
+                    <Button Content=" Закрыть? " Click="BtnCloseGame_Click" 
+                            Margin="10"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
