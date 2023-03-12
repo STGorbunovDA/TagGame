@@ -2,7 +2,9 @@
 
 namespace TagGameLib
 {
-    public enum MoveDirection { UP, Down, Left, Right,
+    public enum MoveDirection
+    {
+        UP, Down, Left, Right,
         None
     }
     public class ModelGame
@@ -12,6 +14,7 @@ namespace TagGameLib
         int step; //счётчик ходов
 
         public Action<int[,]> RePaint { get; set; }
+        public event Action WinCompite;
 
         public int Step
         {
@@ -23,7 +26,7 @@ namespace TagGameLib
         public ModelGame()
         {
             Init();
-            Mix();
+            //Mix();
             Step = 0;
             RePaint?.Invoke(map);
         }
@@ -71,17 +74,33 @@ namespace TagGameLib
         }
 
         #region Движение
-
+        public void Press(int num)
+        {
+            var emt = FindSpace();
+            var pos = FindSpace(num);
+            if(emt.r == pos.r)
+            {
+                if (emt.c < pos.c) ToLeft();
+                else ToRight();
+            }   
+            else if (emt.c == pos.c)
+            {
+                if (emt.r < pos.r) ToUp();
+                else ToDown();
+            }
+            RePaint?.Invoke(map);
+            if(Win()) WinCompite?.Invoke();
+        }
         /// <summary>
         /// Ищем где 0
         /// </summary>
         /// <returns>возращаем координаты</returns>
         /// <exception cref="ArgumentException"></exception>
-        (int, int) FindSpace()
+        (int r, int c) FindSpace(int num =0)
         {
             for (int i = 0; i < map.GetLength(0); i++)
                 for (int j = 0; j < map.GetLength(1); j++)
-                    if (map[i, j] == 0)
+                    if (map[i, j] == num)
                         return (i, j);
             throw new ArgumentException("Нечто странное!!!");
 
@@ -100,9 +119,9 @@ namespace TagGameLib
         void ToDown()
         {
             var (r, c) = FindSpace();
-            if (r < 3)
+            if (r > 0)
             {
-                Swap(ref map[r, c], ref map[r + 1, c]);
+                Swap(ref map[r - 1, c], ref map[r, c]);
                 step++;
             }
         }
@@ -113,9 +132,9 @@ namespace TagGameLib
         void ToUp()
         {
             var (r, c) = FindSpace();
-            if (r > 0)
+            if (r < 3)
             {
-                Swap(ref map[r - 1, c], ref map[r, c]);
+                Swap(ref map[r, c], ref map[r + 1, c]);
                 step++;
             }
         }
@@ -126,9 +145,9 @@ namespace TagGameLib
         void ToRight()
         {
             var (r, c) = FindSpace();
-            if (c < 3)
+            if (c > 0)
             {
-                Swap(ref map[r, c], ref map[r, c + 1]);
+                Swap(ref map[r, c], ref map[r, c - 1]);
                 step++;
             }
         }
@@ -139,9 +158,9 @@ namespace TagGameLib
         void ToLeft()
         {
             var (r, c) = FindSpace();
-            if (c > 0)
+            if (c < 3)
             {
-                Swap(ref map[r, c], ref map[r, c - 1]);
+                Swap(ref map[r, c], ref map[r, c + 1]);
                 step++;
             }
         }
@@ -157,6 +176,8 @@ namespace TagGameLib
             }
             RePaint?.Invoke(map);
         }
+
+        
         #endregion
     }
 }
