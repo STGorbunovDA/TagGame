@@ -14,6 +14,7 @@ namespace TagGameWPF
             model = new ModelGame();
             model.RePaint += ModelRePaint;
             model.Init();
+            model.Mix();
         }
 
         private void ModelRePaint(int[,] e)
@@ -29,6 +30,11 @@ namespace TagGameWPF
                 }
             }
             ic.ItemsSource = map;
+        }
+
+        private void BorderMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
         }
     }
 }

@@ -45,7 +45,7 @@ namespace TagGameLib
         /// <summary>
         /// Перемешиваем
         /// </summary>
-        void Mix()
+        public void Mix()
         {
             for (int i = 0; i < 200; i++)
             {

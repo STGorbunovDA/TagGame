@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="MainWindow" Height="600" Width="600">
+    <Window.Resources>
+        <local:IntPositiveToDateConverter x:Key="cnv"/>
+    </Window.Resources>
     <Grid>
         <Viewbox>
             <ItemsControl x:Name="ic" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50">
@@ -22,7 +25,8 @@
                                 <DataTemplate>
                                     <Border Padding="20" Margin="3" BorderThickness="2" BorderBrush="Silver" 
                                             Background="#EEE" Width="100" Height="100" CornerRadius="10"
-                                            Opacity="{Binding Converter=}">
+                                            Opacity="{Binding Converter={StaticResource cnv}}"
+                                            MouseDown="BorderMouseDown">
                                         <Border.BitmapEffect>
                                             <DropShadowBitmapEffect ShadowDepth="5" Opacity="0.2"/>
                                         </Border.BitmapEffect>
