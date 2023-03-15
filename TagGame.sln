@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagGameWinForms", "TagGameW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagGameWPF", "TagGameWPF\TagGameWPF.csproj", "{6DFC31C5-786A-4B25-9602-1BBDB2709577}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagGameMVVM", "TagGameMVVM\TagGameMVVM.csproj", "{A4C14759-73FE-40D2-AC29-640B5175050D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6DFC31C5-786A-4B25-9602-1BBDB2709577}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DFC31C5-786A-4B25-9602-1BBDB2709577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DFC31C5-786A-4B25-9602-1BBDB2709577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C14759-73FE-40D2-AC29-640B5175050D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C14759-73FE-40D2-AC29-640B5175050D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C14759-73FE-40D2-AC29-640B5175050D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C14759-73FE-40D2-AC29-640B5175050D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
